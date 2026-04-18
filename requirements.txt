@@ -1,0 +1,9 @@
+
+## `requirements.txt`
+
+```txt
+numpy
+scipy
+matplotlib
+jupyter
+pytest
