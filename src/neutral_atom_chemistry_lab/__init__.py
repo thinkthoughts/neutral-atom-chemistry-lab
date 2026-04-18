@@ -1,1 +1,1 @@
-"""neutral_atom_chemistry_lab package."""
+"""Minimal reusable code for neutral-atom chemistry lab."""
