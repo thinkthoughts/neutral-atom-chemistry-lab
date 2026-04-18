@@ -6,6 +6,10 @@ Mapping quantum chemistry workflows to neutral-atom hardware under realistic con
 
 **Key idea:** atom spacing relative to the blockade radius directly determines whether high-quality quantum chemistry solutions remain physically achievable.
 
+![Noise–geometry phase diagram](figures/phase_diagram_quality.png)
+
+*Phase diagram showing where quantum chemistry workflows remain both low-error and physically valid. The viable region shrinks as noise increases and as atom spacing enters the blockade regime.*
+
 ---
 
 ## Overview
@@ -22,6 +26,7 @@ The goal is not only to simulate quantum algorithms, but to identify **where the
 
 - Below the blockade radius (~7 μm), geometry degrades achievable energy  
 - Above the blockade radius, near-ground-state solutions become accessible  
+- Noise and geometry together define a bounded operating region  
 - Constraint-based validation introduces a gap between optimal and physically valid solutions  
 
 ---
@@ -60,11 +65,11 @@ This repo adds a **validation step** to determine which configurations are physi
 
 ## Repository Structure
 
-```
+```text
 notebooks/
-  01_h2_vqe_neutral_atom.ipynb   # end-to-end demo (algorithm + noise + validation)
-  02_blockade_mapping.ipynb      # geometry + blockade effects
-  03_noise_constraint_gate.ipynb # stability regions (planned)
+  01_h2_vqe_neutral_atom.ipynb         # end-to-end demo (algorithm + noise + validation)
+  02_blockade_mapping.ipynb            # geometry + blockade effects
+  03_noise_geometry_phase_diagram.ipynb # noise–geometry operating map
 
 src/neutral_atom_chemistry_lab/
   hamiltonians.py
@@ -92,25 +97,22 @@ python examples/h2_minimal.py
 
 Or open:
 
-```
+```text
 notebooks/01_h2_vqe_neutral_atom.ipynb
 ```
 
 ---
 
-## Example: Noise vs Stability
+## Notebook Highlights
 
-The core experiment sweeps noise (γ) and evaluates:
+### `01_h2_vqe_neutral_atom.ipynb`
+A minimal H₂ VQE workflow with noise and validation. This notebook establishes the baseline algorithm-facing pipeline.
 
-- energy (or proxy)
-- whether the state passes a stability constraint
+### `02_blockade_mapping.ipynb`
+Adds geometry-aware mapping through atom spacing and blockade radius. This notebook shows how neutral-atom hardware constraints affect achievable energy.
 
-Result:
-
-- **low noise → stable execution**
-- **high noise → filtered as invalid**
-
-This identifies **regions where quantum chemistry workflows remain physically meaningful**.
+### `03_noise_geometry_phase_diagram.ipynb`
+Combines geometry, noise, and validation into a single operating-window view. This notebook shows where quantum chemistry workflows remain both low-error and physically valid.
 
 ---
 
