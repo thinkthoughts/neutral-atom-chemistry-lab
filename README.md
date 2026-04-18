@@ -59,3 +59,92 @@ This repo adds a **validation step** to determine which configurations are physi
 ---
 
 ## Repository Structure
+
+```
+notebooks/
+  01_h2_vqe_neutral_atom.ipynb   # end-to-end demo (algorithm + noise + validation)
+  02_blockade_mapping.ipynb      # geometry + blockade effects
+  03_noise_constraint_gate.ipynb # stability regions (planned)
+
+src/neutral_atom_chemistry_lab/
+  hamiltonians.py
+  ansatz.py
+  vqe.py
+  mapping.py
+  noise.py
+  constraint_gate.py
+
+examples/
+  h2_minimal.py
+
+docs/
+  overview.md
+```
+
+---
+
+## Quickstart
+
+```bash
+pip install -r requirements.txt
+python examples/h2_minimal.py
+```
+
+Or open:
+
+```
+notebooks/01_h2_vqe_neutral_atom.ipynb
+```
+
+---
+
+## Example: Noise vs Stability
+
+The core experiment sweeps noise (γ) and evaluates:
+
+- energy (or proxy)
+- whether the state passes a stability constraint
+
+Result:
+
+- **low noise → stable execution**
+- **high noise → filtered as invalid**
+
+This identifies **regions where quantum chemistry workflows remain physically meaningful**.
+
+---
+
+## Why This Matters
+
+Neutral-atom systems are promising for scalable quantum computing, but:
+
+> Not all circuits that work in simulation are executable on hardware.
+
+This repo focuses on:
+
+- translating algorithms → hardware constraints  
+- understanding noise-limited behavior  
+- identifying stable operating regimes  
+
+---
+
+## Roadmap
+
+- [ ] refine H₂ energy estimation (full expectation values)
+- [ ] LiH extension
+- [ ] improved Rydberg geometry modeling
+- [ ] effective γ (γ + λγφ) noise model
+- [ ] fault-tolerance bridge (logical vs physical qubits)
+
+---
+
+## Notes
+
+This repository is intentionally minimal and application-focused.  
+It is designed to be readable, reproducible, and directly relevant to neutral-atom quantum workflows.
+
+---
+
+## License
+
+MIT (or add your preferred license)
